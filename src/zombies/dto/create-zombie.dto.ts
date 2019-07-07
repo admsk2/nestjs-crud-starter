@@ -4,4 +4,7 @@ import { CreateZombieItemDto } from './create-zombie-item.dto';
 export class CreateZombieDto {
   @ApiModelProperty()
   readonly name: String
+
+  @ApiModelProperty()
+  readonly items?: Array<Object>
 }

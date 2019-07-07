@@ -10,6 +10,10 @@ export const ZombieSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    updated_at: {
+        type: Date,
+        required: false
+    },
     items: {
         type: Array,
         required: false
@@ -22,5 +26,12 @@ ZombieSchema.pre('validate', function(next) {
     if (!self.created_at) {
         self.created_at = new Date();
     }
+    next();
+});
+
+
+ZombieSchema.pre('update', function(next) {
+    const self = this;
+    self.updated_at = new Date();
     next();
 });

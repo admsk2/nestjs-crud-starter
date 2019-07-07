@@ -70,8 +70,7 @@ export class ZombiesService implements IZombieService {
      */
 
     async update(name: String, updateZombieDto: CreateZombieDto): Promise<IZombie> {
-      const createdZombie = new this.zombieModel(updateZombieDto);
-      return await createdZombie.findOneAndUpdate({name: name},{$set: updateZombieDto});
+      return await this.zombieModel.findOneAndUpdate({name: name}, updateZombieDto, {new: true}).exec();
     }
 
     /**
@@ -109,8 +108,7 @@ export class ZombiesService implements IZombieService {
      */
 
     async createItem(name: String, createZombieItemDto: CreateZombieItemDto): Promise<IZombie> {
-      const createdZombie = this.zombieModel;
-      return await createdZombie.findOneAndUpdate({name: name},{$push: {items: createZombieItemDto}});
+      return await this.zombieModel.findOneAndUpdate({name: name}, {$push: {items: createZombieItemDto}}, {new: true}).exec();
     }
 
     /**
@@ -121,8 +119,7 @@ export class ZombiesService implements IZombieService {
      */
 
     async updateItem(name: String, updateZombieItemDto: CreateZombieItemDto): Promise<IZombie> {
-      const createdZombie = new this.zombieModel(updateZombieItemDto);
-      return await createdZombie.findOneAndUpdate({name: name, 'items.name': updateZombieItemDto.name},{$set: {'items.$': updateZombieItemDto}});
+      return await this.zombieModel.findOneAndUpdate({name: name, 'items.name': updateZombieItemDto.name},{$set: {'items.$': updateZombieItemDto}}, {new: true});
     }
 
     /**
