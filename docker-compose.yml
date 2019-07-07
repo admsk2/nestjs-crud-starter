@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+
+  # API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    env_file:
+      - .env
+    depends_on:
+      - nosql
+    ports:
+      - '3000:3000'
+  
+  # DB
+  nosql:
+    image: mongo:3.4
+    ports:
+      - '27017:27017'
+
+networks:
+  default:
+    name: zombie-network

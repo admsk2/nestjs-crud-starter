@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+cloudbuild.prod.yaml
+cloudbuild.yaml
+dumb.rdb
+cloud_sql_proxy
+dist
