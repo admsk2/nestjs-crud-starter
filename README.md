@@ -6,13 +6,13 @@ $ yarn install
 
 ## Running the app
 
-# via Docker
+### via Docker
 
 ```bash
 $ docker-compose up
 ```
 
-# local environment
+### local environment
 
 ```bash
 # development
